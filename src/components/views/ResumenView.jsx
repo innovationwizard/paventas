@@ -101,21 +101,6 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
           </BarChart>
         </ResponsiveContainer>
       </div>
-
-      {/* Bloque detailed */}
-      <div style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: 20 }}>
-        <SectionTitle sub="Cantidad de unidades por bloque PCV">Distribución por Bloque</SectionTitle>
-        <ResponsiveContainer width="100%" height={250}>
-          <BarChart data={bloqueData}>
-            <CartesianGrid strokeDasharray="3 3" stroke={COLORS.border} />
-            <XAxis dataKey="name" tick={{ fill: COLORS.textDim, fontSize: 11 }} />
-            <YAxis tick={{ fill: COLORS.textDim, fontSize: 10 }} allowDecimals={false} />
-            <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="unidades" name="Unidades" fill={COLORS.accent} radius={[4, 4, 0, 0]} style={{ cursor: 'pointer' }}
-              onClick={(data) => { const b = parseInt(data.name.replace('Bloque ', '')); openDrillDown(`${data.name}`, filtered.filter(r => r.bloque === b)); }} />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
     </>
   );
 }

@@ -1,5 +1,7 @@
 export const parseQ = (val) => {
-  if (!val || typeof val !== 'string') return 0;
+  if (val === null || val === undefined) return 0;
+  if (typeof val === 'number') return isNaN(val) ? 0 : val;
+  if (typeof val !== 'string') return 0;
   const cleaned = val.replace(/\s/g, '').replace(/Q/g, '').replace(/,/g, '');
   if (cleaned === '-' || cleaned === '' || cleaned === '0') return 0;
   const num = parseFloat(cleaned);

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0f1a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#3b82f6"/>
+
+  <!-- Chart icon using filled rects for bars + filled polygon for trend line -->
+  <!-- Bars (6 vertical bars, ascending pattern) -->
+  <rect x="490" y="218" width="14" height="42" rx="3" fill="#3b82f6" opacity="0.5"/>
+  <rect x="518" y="198" width="14" height="62" rx="3" fill="#3b82f6" opacity="0.6"/>
+  <rect x="546" y="218" width="14" height="42" rx="3" fill="#3b82f6" opacity="0.5"/>
+  <rect x="574" y="188" width="14" height="72" rx="3" fill="#3b82f6" opacity="0.7"/>
+  <rect x="602" y="178" width="14" height="82" rx="3" fill="#3b82f6" opacity="0.7"/>
+  <rect x="630" y="158" width="14" height="102" rx="3" fill="#3b82f6" opacity="0.8"/>
+  <rect x="658" y="138" width="14" height="122" rx="3" fill="#3b82f6" opacity="0.9"/>
+  <rect x="686" y="148" width="14" height="112" rx="3" fill="#3b82f6" opacity="0.85"/>
+
+  <!-- Trend line (thick filled polygon acting as a line) -->
+  <polygon points="497,210 525,185 553,200 581,170 609,158 637,138 665,120 693,132 693,140 665,128 637,146 609,166 581,178 553,208 525,193 497,218" fill="#60a5fa" opacity="0.6"/>
+
+  <!-- Trend line dots -->
+  <circle cx="497" cy="214" r="6" fill="#60a5fa"/>
+  <circle cx="525" cy="189" r="6" fill="#60a5fa"/>
+  <circle cx="553" cy="204" r="6" fill="#60a5fa"/>
+  <circle cx="581" cy="174" r="6" fill="#60a5fa"/>
+  <circle cx="609" cy="162" r="6" fill="#60a5fa"/>
+  <circle cx="637" cy="142" r="6" fill="#60a5fa"/>
+  <circle cx="665" cy="124" r="6" fill="#60a5fa"/>
+  <circle cx="693" cy="136" r="6" fill="#60a5fa"/>
+
+  <text x="600" y="380" text-anchor="middle" fill="#e2e8f0" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700">Panel de Control Financiero</text>
+  <text x="600" y="430" text-anchor="middle" fill="#3b82f6" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="600">CESION DE DERECHOS — APTOS</text>
+  <text x="600" y="475" text-anchor="middle" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="22">Boulevard 5 · Corte Febrero 2026</text>
+</svg>

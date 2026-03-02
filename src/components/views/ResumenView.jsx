@@ -29,12 +29,12 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie data={estatusData} cx="50%" cy="45%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value"
-                label={({ cx, cy, midAngle, outerRadius, name, value, percent }) => {
+                label={({ cx, cy, midAngle, outerRadius, index, name, value, percent }) => {
                   const RADIAN = Math.PI / 180;
                   const radius = outerRadius + 22;
                   const x = cx + radius * Math.cos(-midAngle * RADIAN);
                   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                  return <text x={x} y={y} fill={COLORS.text} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontFamily="'DM Sans', sans-serif">{name}: {value} ({(percent * 100).toFixed(0)}%)</text>;
+                  return <text x={x} y={y} fill={PIE_COLORS[index]} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontWeight={600} fontFamily="'DM Sans', sans-serif">{name}: {value} ({(percent * 100).toFixed(0)}%)</text>;
                 }}
                 labelLine={false}
                 onClick={(data) => { const m = { 'Atrasado': 'ATRASADO', 'Al Día': 'AL DIA' }; if (m[data.name]) openDrillDown(`Estatus: ${data.name}`, filtered.filter(r => r.estatus === m[data.name])); }}>
@@ -51,12 +51,13 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie data={precalData} cx="50%" cy="45%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value"
-                label={({ cx, cy, midAngle, outerRadius, name, value, percent }) => {
+                label={({ cx, cy, midAngle, outerRadius, index, name, value, percent }) => {
                   const RADIAN = Math.PI / 180;
+                  const fills = [COLORS.green, COLORS.red, COLORS.textDim, COLORS.amber];
                   const radius = outerRadius + 22;
                   const x = cx + radius * Math.cos(-midAngle * RADIAN);
                   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                  return <text x={x} y={y} fill={COLORS.text} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontFamily="'DM Sans', sans-serif">{name}: {value} ({(percent * 100).toFixed(0)}%)</text>;
+                  return <text x={x} y={y} fill={fills[index]} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontWeight={600} fontFamily="'DM Sans', sans-serif">{name}: {value} ({(percent * 100).toFixed(0)}%)</text>;
                 }}
                 labelLine={false}
                 onClick={(data) => { const m = { 'Aprobada': 'APROBADA', 'Denegada': 'DENEGADA', 'N/A': 'N/A', 'Disponible': 'DISPONIBLE' }; if (m[data.name]) openDrillDown(`Precalificación: ${data.name}`, filtered.filter(r => r.precalificacion === m[data.name])); }}>

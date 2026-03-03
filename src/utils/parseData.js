@@ -36,5 +36,7 @@ export function parseCSV(csvText) {
     bloque: parseInt(r['Bloque PCV']) || 0,
     precalificacion: col(r, 'Estatus Precalificaci\u00f3n', 'Estatus Precalificaci\x97n').trim(),
     comentarios: col(r, 'Comentarios de Precalificaci\u00f3n', 'Comentarios de Precalificaci\x97n').trim(),
+    razonCompra: col(r, 'Raz\u00f3n de compra', 'Razon de compra').trim().toUpperCase(),
+    tipoCliente: (r['Tipo de cliente'] || '').trim().toUpperCase(),
   }));
 }

@@ -23,6 +23,7 @@ export default function CarteraView({ sorted, allData }) {
     ['plusvalia', 'Plusvalía'], ['engancheTotal', 'Enganche Plan'],
     ['enganchePagado', 'Pagado'], ['difFebrero', 'Dif. Feb'],
     ['estatus', 'Estatus'], ['bloque', 'Bloque'], ['precalificacion', 'Precalif.'],
+    ['razonCompra', 'Razón Compra'], ['tipoCliente', 'Tipo Cliente'],
   ];
 
   return (
@@ -62,6 +63,8 @@ export default function CarteraView({ sorted, allData }) {
                     bg={r.precalificacion === 'APROBADA' ? COLORS.greenBg : r.precalificacion === 'DENEGADA' ? COLORS.redBg : 'rgba(100,116,139,0.12)'}
                   >{r.precalificacion}</Badge>
                 </td>
+                <td style={{ ...tdStyle, color: COLORS.textMuted, whiteSpace: 'nowrap' }}>{r.razonCompra}</td>
+                <td style={{ ...tdStyle, color: COLORS.textMuted, whiteSpace: 'nowrap' }}>{r.tipoCliente}</td>
               </tr>
             ))}
           </tbody>
@@ -93,6 +96,8 @@ export default function CarteraView({ sorted, allData }) {
                 ['Precio/m²', fmtQFull(r.precioM2)],
                 ['m² Interno', `${r.m2Interno} m²`],
                 ['m² Terraza', `${r.m2Terraza} m²`],
+                ['Razón de Compra', r.razonCompra || '—'],
+                ['Tipo de Cliente', r.tipoCliente || '—'],
               ].map(([label, val], i) => (
                 <div key={i} style={{ padding: '10px 14px', background: COLORS.card, borderRadius: 6, border: `1px solid ${COLORS.border}` }}>
                   <div style={{ fontSize: 10, color: COLORS.textDim, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{label}</div>

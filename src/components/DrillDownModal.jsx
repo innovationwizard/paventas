@@ -21,6 +21,7 @@ export default function DrillDownModal({ drillDown, drillFiltered, drillSearch, 
     ['cliente', 'Cliente'], ['apto', 'Apto'], ['modelo', 'Modelo'],
     ['precioVenta', 'Precio Venta'], ['enganchePagado', 'Pagado'],
     ['difFebrero', 'Dif. Feb'], ['estatus', 'Estatus'], ['bloque', 'Bloque'], ['precalificacion', 'Precalif.'],
+    ['razonCompra', 'Razón Compra'], ['tipoCliente', 'Tipo Cliente'],
   ];
 
   const totals = drillFiltered.reduce((s, r) => ({ v: s.v + r.precioVenta, p: s.p + r.enganchePagado, d: s.d + r.difFebrero }), { v: 0, p: 0, d: 0 });
@@ -58,6 +59,8 @@ export default function DrillDownModal({ drillDown, drillFiltered, drillSearch, 
                   <td style={mTd}><Badge color={r.estatus === 'ATRASADO' ? COLORS.red : COLORS.green} bg={r.estatus === 'ATRASADO' ? COLORS.redBg : COLORS.greenBg}>{r.estatus}</Badge></td>
                   <td style={{ ...mTd, textAlign: 'center', color: COLORS.textMuted }}>{r.bloque}</td>
                   <td style={mTd}><Badge color={r.precalificacion === 'APROBADA' ? COLORS.green : r.precalificacion === 'DENEGADA' ? COLORS.red : COLORS.textDim} bg={r.precalificacion === 'APROBADA' ? COLORS.greenBg : r.precalificacion === 'DENEGADA' ? COLORS.redBg : 'rgba(100,116,139,0.12)'}>{r.precalificacion}</Badge></td>
+                  <td style={{ ...mTd, color: COLORS.textMuted, whiteSpace: 'nowrap' }}>{r.razonCompra}</td>
+                  <td style={{ ...mTd, color: COLORS.textMuted, whiteSpace: 'nowrap' }}>{r.tipoCliente}</td>
                 </tr>
               ))}
             </tbody>

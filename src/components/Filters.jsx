@@ -1,13 +1,13 @@
 import { COLORS } from '../theme/colors';
 
-export default function Filters({ filterEstatus, setFilterEstatus, filterBloque, setFilterBloque, filterPrecal, setFilterPrecal, filterCliente, setFilterCliente, uniqueBloques, uniquePrecal, filteredCount, totalCount }) {
+export default function Filters({ filterEstatus, setFilterEstatus, filterBloque, setFilterBloque, filterPrecal, setFilterPrecal, filterCliente, setFilterCliente, filterRazon, setFilterRazon, filterTipo, setFilterTipo, uniqueBloques, uniquePrecal, uniqueRazon, uniqueTipo, filteredCount, totalCount }) {
   const selectStyle = {
     background: '#1e293b', color: COLORS.text, border: `1px solid ${COLORS.borderAccent}`,
     borderRadius: 6, padding: '7px 12px', fontSize: 13, outline: 'none', cursor: 'pointer',
     fontFamily: "'DM Sans', sans-serif",
   };
 
-  const hasFilters = filterEstatus !== 'TODOS' || filterBloque !== 'TODOS' || filterPrecal !== 'TODOS' || filterCliente;
+  const hasFilters = filterEstatus !== 'TODOS' || filterBloque !== 'TODOS' || filterPrecal !== 'TODOS' || filterCliente || filterRazon !== 'TODOS' || filterTipo !== 'TODOS';
 
   return (
     <div style={{ padding: '14px 28px', borderBottom: `1px solid ${COLORS.border}`, background: 'rgba(17,24,39,0.6)', display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -25,13 +25,21 @@ export default function Filters({ filterEstatus, setFilterEstatus, filterBloque,
         <option value="TODOS">Precalificación: Todas</option>
         {uniquePrecal.map(p => <option key={p} value={p}>{p}</option>)}
       </select>
+      <select value={filterRazon} onChange={e => setFilterRazon(e.target.value)} style={selectStyle}>
+        <option value="TODOS">Razón: Todas</option>
+        {uniqueRazon.map(r => <option key={r} value={r}>{r}</option>)}
+      </select>
+      <select value={filterTipo} onChange={e => setFilterTipo(e.target.value)} style={selectStyle}>
+        <option value="TODOS">Tipo cliente: Todos</option>
+        {uniqueTipo.map(t => <option key={t} value={t}>{t}</option>)}
+      </select>
       <input
         type="text" placeholder="🔍 Buscar cliente..." value={filterCliente}
         onChange={e => setFilterCliente(e.target.value)}
         style={{ ...selectStyle, width: 180 }}
       />
       {hasFilters && (
-        <button onClick={() => { setFilterEstatus('TODOS'); setFilterBloque('TODOS'); setFilterPrecal('TODOS'); setFilterCliente(''); }}
+        <button onClick={() => { setFilterEstatus('TODOS'); setFilterBloque('TODOS'); setFilterPrecal('TODOS'); setFilterCliente(''); setFilterRazon('TODOS'); setFilterTipo('TODOS'); }}
           style={{ ...selectStyle, cursor: 'pointer', color: COLORS.red, borderColor: COLORS.red, background: 'transparent', fontSize: 12 }}>
           ✕ Limpiar
         </button>

@@ -17,6 +17,8 @@ export default function App() {
   const [filterBloque, setFilterBloque] = useState('TODOS');
   const [filterPrecal, setFilterPrecal] = useState('TODOS');
   const [filterCliente, setFilterCliente] = useState('');
+  const [filterRazon, setFilterRazon] = useState('TODOS');
+  const [filterTipo, setFilterTipo] = useState('TODOS');
   const [selectedView, setSelectedView] = useState('resumen');
   const [sortCol, setSortCol] = useState('difFebrero');
   const [sortDir, setSortDir] = useState('asc');
@@ -38,9 +40,11 @@ export default function App() {
       if (filterBloque !== 'TODOS' && r.bloque !== parseInt(filterBloque)) return false;
       if (filterPrecal !== 'TODOS' && r.precalificacion !== filterPrecal) return false;
       if (filterCliente && !r.cliente.toLowerCase().includes(filterCliente.toLowerCase())) return false;
+      if (filterRazon !== 'TODOS' && r.razonCompra !== filterRazon) return false;
+      if (filterTipo !== 'TODOS' && r.tipoCliente !== filterTipo) return false;
       return true;
     });
-  }, [data, filterEstatus, filterBloque, filterPrecal, filterCliente]);
+  }, [data, filterEstatus, filterBloque, filterPrecal, filterCliente, filterRazon, filterTipo]);
 
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => {
@@ -112,6 +116,8 @@ export default function App() {
 
   const uniqueBloques = useMemo(() => [...new Set(data.map(r => r.bloque))].sort(), [data]);
   const uniquePrecal = useMemo(() => [...new Set(data.map(r => r.precalificacion))].sort(), [data]);
+  const uniqueRazon = useMemo(() => [...new Set(data.map(r => r.razonCompra).filter(Boolean))].sort(), [data]);
+  const uniqueTipo = useMemo(() => [...new Set(data.map(r => r.tipoCliente).filter(Boolean))].sort(), [data]);
 
   if (loading) {
     return (
@@ -135,7 +141,10 @@ export default function App() {
         filterBloque={filterBloque} setFilterBloque={setFilterBloque}
         filterPrecal={filterPrecal} setFilterPrecal={setFilterPrecal}
         filterCliente={filterCliente} setFilterCliente={setFilterCliente}
+        filterRazon={filterRazon} setFilterRazon={setFilterRazon}
+        filterTipo={filterTipo} setFilterTipo={setFilterTipo}
         uniqueBloques={uniqueBloques} uniquePrecal={uniquePrecal}
+        uniqueRazon={uniqueRazon} uniqueTipo={uniqueTipo}
         filteredCount={filtered.length} totalCount={data.length}
       />
 

@@ -84,7 +84,7 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
         </div>
       </div>
 
-      {/* Modelo analysis */}
+      {/* Modelo analysis — commented out
       <div style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: 20, marginBottom: 22 }}>
         <SectionTitle sub="Top 15 modelos por valor total de venta">Análisis por Modelo de Apartamento</SectionTitle>
         <ResponsiveContainer width="100%" height={280}>
@@ -101,6 +101,7 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
           </BarChart>
         </ResponsiveContainer>
       </div>
+      */}
     </>
   );
 }

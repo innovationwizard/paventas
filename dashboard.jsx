@@ -323,7 +323,7 @@ const DrillDownModal = ({ drillDown, drillFiltered, drillSearch, setDrillSearch,
             style={{ background: '#1e293b', color: COLORS.text, border: `1px solid ${COLORS.borderAccent}`, borderRadius: 6, padding: '8px 14px', fontSize: 13, width: '100%', maxWidth: 400, outline: 'none', fontFamily: "'DM Sans', sans-serif" }} />
         </div>
         <div style={{ overflowY: 'auto', flex: 1 }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 900 }}>
+          <table style={{ borderCollapse: 'collapse', minWidth: 900 }}>
             <thead style={{ position: 'sticky', top: 0, background: COLORS.card, zIndex: 1 }}>
               <tr>{cols.map(([col, label]) => (
                 <th key={col} style={mTh(col)} onClick={() => handleDrillSort(col)}>{label} {drillSortCol === col ? (drillSortDir === 'asc' ? '▲' : '▼') : ''}</th>
@@ -711,7 +711,7 @@ export default function Dashboard() {
               <SectionTitle sub={`${sorted.length} registros · Click en columna para ordenar`}>Detalle de Cartera</SectionTitle>
             </div>
             <div style={{ overflowX: 'auto', maxHeight: 600 }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 1200 }}>
+              <table style={{ borderCollapse: 'collapse', minWidth: 1200 }}>
                 <thead>
                   <tr>
                     {[
@@ -823,7 +823,7 @@ export default function Dashboard() {
                 <SectionTitle sub={`${clienteAgg.length} clientes únicos`}>Resumen por Cliente</SectionTitle>
               </div>
               <div style={{ overflowX: 'auto', maxHeight: 500 }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 800 }}>
+                <table style={{ borderCollapse: 'collapse', minWidth: 800 }}>
                   <thead>
                     <tr>
                       {['Cliente', 'Unidades', 'Valor Total', 'Pagado', 'Dif. Feb', 'Plusvalía'].map(h => (

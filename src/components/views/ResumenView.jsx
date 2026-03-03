@@ -18,6 +18,14 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
     { name: 'Disponible', value: stats.disponible },
   ].filter(d => d.value > 0);
 
+  const razonMap = {};
+  filtered.forEach(r => { if (r.razonCompra) razonMap[r.razonCompra] = (razonMap[r.razonCompra] || 0) + 1; });
+  const razonData = Object.entries(razonMap).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+
+  const tipoMap = {};
+  filtered.forEach(r => { if (r.tipoCliente) tipoMap[r.tipoCliente] = (tipoMap[r.tipoCliente] || 0) + 1; });
+  const tipoData = Object.entries(tipoMap).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+
   const totalCount = stats.count;
 
   return (
@@ -62,6 +70,50 @@ export default function ResumenView({ filtered, stats, bloqueData, modeloData, o
                 labelLine={false}
                 onClick={(data) => { const m = { 'Aprobada': 'APROBADA', 'Denegada': 'DENEGADA', 'N/A': 'N/A', 'Disponible': 'DISPONIBLE' }; if (m[data.name]) openDrillDown(`Precalificación: ${data.name}`, filtered.filter(r => r.precalificacion === m[data.name])); }}>
                 {precalData.map((_, i) => <Cell key={i} fill={[COLORS.green, COLORS.red, COLORS.textDim, COLORS.amber][i]} style={{ cursor: 'pointer' }} />)}
+              </Pie>
+              <Tooltip content={<PieTooltip totalCount={totalCount} />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Razón de Compra Pie */}
+        <div style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: 20 }}>
+          <SectionTitle sub="Motivo de adquisición">Razón de Compra</SectionTitle>
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie data={razonData} cx="50%" cy="45%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value"
+                label={({ cx, cy, midAngle, outerRadius, index, name, value, percent }) => {
+                  const RADIAN = Math.PI / 180;
+                  const radius = outerRadius + 22;
+                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                  return <text x={x} y={y} fill={PIE_COLORS[index % PIE_COLORS.length]} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontWeight={600} fontFamily="'DM Sans', sans-serif">{name}: {value} ({(percent * 100).toFixed(0)}%)</text>;
+                }}
+                labelLine={false}
+                onClick={(data) => openDrillDown(`Razón: ${data.name}`, filtered.filter(r => r.razonCompra === data.name))}>
+                {razonData.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} style={{ cursor: 'pointer' }} />)}
+              </Pie>
+              <Tooltip content={<PieTooltip totalCount={totalCount} />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Tipo de Cliente Pie */}
+        <div style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 10, padding: 20 }}>
+          <SectionTitle sub="Clasificación de compradores">Tipo de Cliente</SectionTitle>
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie data={tipoData} cx="50%" cy="45%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value"
+                label={({ cx, cy, midAngle, outerRadius, index, name, value, percent }) => {
+                  const RADIAN = Math.PI / 180;
+                  const radius = outerRadius + 22;
+                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                  return <text x={x} y={y} fill={PIE_COLORS[(index + 2) % PIE_COLORS.length]} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontWeight={600} fontFamily="'DM Sans', sans-serif">{name}: {value} ({(percent * 100).toFixed(0)}%)</text>;
+                }}
+                labelLine={false}
+                onClick={(data) => openDrillDown(`Tipo: ${data.name}`, filtered.filter(r => r.tipoCliente === data.name))}>
+                {tipoData.map((_, i) => <Cell key={i} fill={PIE_COLORS[(i + 2) % PIE_COLORS.length]} style={{ cursor: 'pointer' }} />)}
               </Pie>
               <Tooltip content={<PieTooltip totalCount={totalCount} />} />
             </PieChart>

@@ -17,6 +17,6 @@ export const fmtQ = (n) => {
 };
 
 export const fmtQFull = (n) => {
-  if (n === 0) return 'Q 0.00';
-  return `${n < 0 ? '-' : ''}Q ${Math.abs(n).toLocaleString('es-GT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  if (n === 0) return 'Q\u00A00.00';
+  return `${n < 0 ? '-' : ''}Q\u00A0${Math.abs(n).toLocaleString('es-GT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 };

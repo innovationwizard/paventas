@@ -14,7 +14,7 @@ export default function DrillDownModal({ drillDown, drillFiltered, drillSearch, 
   });
 
   const mTd = {
-    padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif",
+    padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif", whiteSpace: 'nowrap',
   };
 
   const cols = [

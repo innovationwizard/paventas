@@ -15,7 +15,7 @@ export default function CarteraView({ sorted, allData }) {
     background: sortCol === col ? 'rgba(59,130,246,0.08)' : 'transparent',
   });
 
-  const tdStyle = { padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif" };
+  const tdStyle = { padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif", whiteSpace: 'nowrap' };
 
   const columns = [
     ['cliente', 'Cliente'], ['apto', 'Apto'], ['modelo', 'Modelo'],

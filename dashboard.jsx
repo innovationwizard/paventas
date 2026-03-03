@@ -300,7 +300,7 @@ const DrillDownModal = ({ drillDown, drillFiltered, drillSearch, setDrillSearch,
     background: drillSortCol === col ? 'rgba(59,130,246,0.08)' : 'transparent',
   });
   const mTd = {
-    padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif",
+    padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif", whiteSpace: 'nowrap',
   };
   const cols = [
     ['cliente', 'Cliente'], ['apto', 'Apto'], ['modelo', 'Modelo'],
@@ -548,7 +548,7 @@ export default function Dashboard() {
     background: sortCol === col ? 'rgba(59,130,246,0.08)' : 'transparent',
   });
 
-  const tdStyle = { padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif" };
+  const tdStyle = { padding: '10px 12px', fontSize: 13, borderBottom: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif", whiteSpace: 'nowrap' };
 
   return (
     <div style={{

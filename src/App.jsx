@@ -13,12 +13,12 @@ import ClientesView from './components/views/ClientesView';
 export default function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filterEstatus, setFilterEstatus] = useState('TODOS');
-  const [filterBloque, setFilterBloque] = useState('TODOS');
-  const [filterPrecal, setFilterPrecal] = useState('TODOS');
+  const [filterEstatus, setFilterEstatus] = useState([]);
+  const [filterBloque, setFilterBloque] = useState([]);
+  const [filterPrecal, setFilterPrecal] = useState([]);
   const [filterCliente, setFilterCliente] = useState('');
-  const [filterRazon, setFilterRazon] = useState('TODOS');
-  const [filterTipo, setFilterTipo] = useState('TODOS');
+  const [filterRazon, setFilterRazon] = useState([]);
+  const [filterTipo, setFilterTipo] = useState([]);
   const [selectedView, setSelectedView] = useState('resumen');
   const [sortCol, setSortCol] = useState('difFebrero');
   const [sortDir, setSortDir] = useState('asc');
@@ -36,12 +36,12 @@ export default function App() {
 
   const filtered = useMemo(() => {
     return data.filter(r => {
-      if (filterEstatus !== 'TODOS' && r.estatus !== filterEstatus) return false;
-      if (filterBloque !== 'TODOS' && r.bloque !== parseInt(filterBloque)) return false;
-      if (filterPrecal !== 'TODOS' && r.precalificacion !== filterPrecal) return false;
+      if (filterEstatus.length && !filterEstatus.includes(r.estatus)) return false;
+      if (filterBloque.length && !filterBloque.includes(r.bloque)) return false;
+      if (filterPrecal.length && !filterPrecal.includes(r.precalificacion)) return false;
       if (filterCliente && !r.cliente.toLowerCase().includes(filterCliente.toLowerCase())) return false;
-      if (filterRazon !== 'TODOS' && r.razonCompra !== filterRazon) return false;
-      if (filterTipo !== 'TODOS' && r.tipoCliente !== filterTipo) return false;
+      if (filterRazon.length && !filterRazon.includes(r.razonCompra)) return false;
+      if (filterTipo.length && !filterTipo.includes(r.tipoCliente)) return false;
       return true;
     });
   }, [data, filterEstatus, filterBloque, filterPrecal, filterCliente, filterRazon, filterTipo]);

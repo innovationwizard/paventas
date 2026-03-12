@@ -28,7 +28,7 @@ export function parseCSV(csvText) {
     precioSugerido: parseQ(r['Precio actual sugerido']),
     plusvalia: parseQ(col(r, 'GAP Plusval\u00eda', 'GAP Plusval\x92a')),
     engancheTotal: parseQ(r['Enganche total plan de pagos']),
-    enganchePactado: parseQ(r['Enganche pactado a Febrero 2026']),
+    enganchePactado: parseQ(col(r, 'Enganche pactado a Marzo 2026', 'Enganche pactado a Febrero 2026')),
     enganchePagado: parseQ(r['Enganche pagado']),
     difFebrero: parseQ(r['Diferencia a Febrero']),
     diferencia: parseQ(r['Diferencia']),
